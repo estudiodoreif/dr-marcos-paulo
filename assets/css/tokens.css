@@ -1,0 +1,143 @@
+/* ==========================================================================
+   Dr. Marcos Paulo Silveira — Design Tokens
+   Fonte única de verdade para cor, tipografia, espaço, raio, sombra e motion.
+   Documentação visual: /design-system.html · Referência: /DESIGN.md
+   ========================================================================== */
+
+:root {
+  /* ---------- Cor · Primitivas ---------- */
+  --espresso-950: #1f1714;
+  --espresso-900: #2a201c;
+  --espresso-800: #3a2d28; /* cor-assinatura da marca */
+  --espresso-700: #4e3e37;
+  --espresso-600: #6b5850;
+
+  --caramel-600: #8a6a4a; /* texto de destaque sobre fundos claros (AA) */
+  --caramel-500: #a9865f;
+  --caramel-400: #cbad8d; /* destaque decorativo / sobre fundos escuros */
+  --caramel-200: #e6d6c3;
+
+  --sand-300: #ddd3c9;
+  --sand-200: #eae4de; /* fundo do hero */
+  --sand-100: #f2ede8;
+  --linen-50: #fbf8f5;
+  --white: #ffffff;
+
+  --stone-300: #d3cfc4;
+  --ink-900: #2c2c2c;
+  --ink-700: #4a4643;
+  --ink-600: #5e5a57;
+  --ink-400: #8f8a86;
+
+  /* ---------- Cor · Semânticas ---------- */
+  --color-bg: var(--linen-50);
+  --color-bg-alt: var(--sand-100);
+  --color-bg-strong: var(--sand-200);
+  --color-surface: var(--white);
+  --color-surface-inverse: var(--espresso-800);
+
+  --color-text: var(--ink-900);
+  --color-text-muted: var(--ink-600);
+  --color-text-subtle: var(--ink-400);
+  --color-text-inverse: var(--linen-50);
+  --color-text-inverse-muted: rgba(251, 248, 245, 0.68);
+
+  --color-brand: var(--espresso-800);
+  --color-brand-hover: var(--espresso-900);
+  --color-accent: var(--caramel-600);
+  --color-accent-soft: var(--caramel-400);
+
+  --color-line: rgba(58, 45, 40, 0.12);
+  --color-line-strong: rgba(58, 45, 40, 0.24);
+  --color-line-inverse: rgba(251, 248, 245, 0.16);
+  --color-focus: var(--caramel-500);
+
+  /* ---------- Tipografia ---------- */
+  --font-display: "Italiana", "Times New Roman", serif;
+  --font-body: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  /* Escala fluida (mobile → desktop) */
+  --text-display-xl: clamp(2.75rem, 1.55rem + 4.4vw, 5.25rem);
+  --text-display-lg: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
+  --text-display-md: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  --text-title: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+  --text-body-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-caption: 0.8125rem;
+  --text-overline: 0.75rem;
+
+  --leading-tight: 1.05;
+  --leading-snug: 1.25;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  --tracking-display: -0.01em;
+  --tracking-overline: 0.2em;
+  --tracking-button: 0.04em;
+
+  /* ---------- Espaço (base 4px) ---------- */
+  --space-1: 0.25rem;  /* 4 */
+  --space-2: 0.5rem;   /* 8 */
+  --space-3: 0.75rem;  /* 12 */
+  --space-4: 1rem;     /* 16 */
+  --space-5: 1.5rem;   /* 24 */
+  --space-6: 2rem;     /* 32 */
+  --space-7: 3rem;     /* 48 */
+  --space-8: 4rem;     /* 64 */
+  --space-9: 6rem;     /* 96 */
+  --space-10: 8rem;    /* 128 */
+
+  --section-y: clamp(5rem, 3.5rem + 6vw, 9rem);
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --container: 1200px;
+  --container-narrow: 760px;
+  --header-h: 76px;
+
+  /* ---------- Raio ---------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-arch: 999px 999px var(--radius-lg) var(--radius-lg);
+  --radius-pill: 999px;
+
+  /* ---------- Sombra (tons quentes) ---------- */
+  --shadow-xs: 0 1px 2px rgba(58, 45, 40, 0.05);
+  --shadow-sm: 0 1px 2px rgba(58, 45, 40, 0.04), 0 8px 24px -12px rgba(58, 45, 40, 0.14);
+  --shadow-md: 0 2px 4px rgba(58, 45, 40, 0.04), 0 24px 48px -20px rgba(58, 45, 40, 0.22);
+  --shadow-lg: 0 40px 80px -32px rgba(42, 32, 28, 0.35);
+
+  /* ---------- Motion ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 800ms;
+
+  /* ---------- Ícones · Material Symbols Sharp, peso 200 ---------- */
+  --icon-size-sm: 20px;
+  --icon-size-md: 24px;
+  --icon-size-lg: 32px;
+  --icon-weight: 200;
+
+  /* ---------- Camadas ---------- */
+  --z-header: 50;
+  --z-float: 60;
+  --z-drawer: 70;
+  --z-toast: 80;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+  }
+}

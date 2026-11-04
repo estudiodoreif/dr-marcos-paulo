@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design System · Dr. Marcos Paulo Silveira</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Poppins:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,200,0,0&icon_names=arrow_outward,auto_awesome,call,chat,check,close,cookie,eco,hearing,location_on,map,menu,shield,verified,videocam,visibility&display=block">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    body { background: var(--linen-50); }
+    .ds-header { padding: var(--space-9) 0 var(--space-7); background: var(--sand-200); }
+    .ds-header img { height: 26px; width: auto; margin-bottom: var(--space-7); }
+    .ds-nav { position: sticky; top: 0; z-index: 10; background: rgba(251,248,245,.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-line); }
+    .ds-nav ul { display: flex; gap: var(--space-5); overflow-x: auto; padding-block: var(--space-4); font-size: var(--text-small); white-space: nowrap; }
+    .ds-nav a { color: var(--ink-600); }
+    .ds-nav a:hover { color: var(--espresso-800); }
+    .ds-section { padding-block: var(--space-9); border-bottom: 1px solid var(--color-line); }
+    .ds-section > .container > h2 { margin-bottom: var(--space-3); }
+    .ds-section > .container > .body { max-width: 64ch; margin-bottom: var(--space-7); }
+    .ds-sub { font-size: var(--text-overline); font-weight: 500; letter-spacing: var(--tracking-overline); text-transform: uppercase; color: var(--ink-600); margin: var(--space-7) 0 var(--space-4); }
+    .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--space-4); }
+    .swatch { border: 1px solid var(--color-line); border-radius: var(--radius-md); overflow: hidden; background: var(--white); }
+    .swatch__chip { height: 96px; }
+    .swatch__meta { padding: var(--space-3) var(--space-4); display: grid; gap: 2px; }
+    .swatch__meta b { font-weight: 500; font-size: var(--text-small); color: var(--espresso-800); }
+    .swatch__meta code, .tok { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.75rem; color: var(--ink-600); }
+    .type-row { display: grid; grid-template-columns: 200px 1fr; gap: var(--space-5); align-items: baseline; padding-block: var(--space-5); border-top: 1px solid var(--color-line); }
+    .type-row:last-child { border-bottom: 1px solid var(--color-line); }
+    .type-row .tok { display: block; margin-top: var(--space-1); }
+    .type-row > div:first-child { font-size: var(--text-small); color: var(--espresso-800); font-weight: 500; }
+    .grid-demo { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+    .panel { padding: var(--space-6); border-radius: var(--radius-lg); background: var(--white); border: 1px solid var(--color-line); }
+    .panel--dark { background: var(--espresso-800); border-color: var(--espresso-800); }
+    .spaces { display: grid; gap: var(--space-3); }
+    .space-row { display: grid; grid-template-columns: 110px 60px 1fr; align-items: center; gap: var(--space-4); font-size: var(--text-small); }
+    .space-row span:last-child { height: 12px; background: var(--caramel-400); border-radius: 2px; }
+    .radii, .shadows { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-5); }
+    .radii div, .shadows div { height: 110px; background: var(--white); border: 1px solid var(--color-line); display: grid; place-items: end start; padding: var(--space-3); }
+    .shadows div { border: 0; border-radius: var(--radius-md); }
+    .icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: var(--space-3); }
+    .icons div { display: grid; justify-items: center; gap: var(--space-3); padding: var(--space-5) var(--space-3); background: var(--white); border: 1px solid var(--color-line); border-radius: var(--radius-md); }
+    .icons .icon { font-size: 32px; color: var(--espresso-800); font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 40; }
+    .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-5); }
+    .rules { display: grid; gap: var(--space-3); }
+    .rules li { display: grid; grid-template-columns: auto 1fr; gap: var(--space-3); font-size: var(--text-small); color: var(--ink-700); }
+    .rules .icon { color: var(--caramel-600); font-size: 20px; }
+    @media (max-width: 640px) { .type-row { grid-template-columns: 1fr; gap: var(--space-2); } }
+  </style>
+</head>
+<body>
+  <header class="ds-header">
+    <div class="container">
+      <img src="assets/img/logo-dr-marcos-paulo.webp" alt="Dr. Marcos Paulo" width="222" height="26">
+      <span class="overline">Design System · v1.0</span>
+      <h1 class="display-xl" style="margin-top:var(--space-4)">Escuta, ciência <em style="font-style:normal;color:var(--caramel-600)">e calma.</em></h1>
+      <p class="lead" style="max-width:60ch;margin-top:var(--space-5)">Fundamentos visuais do site do Dr. Marcos Paulo Silveira. Tons quentes e terrosos, tipografia editorial e muito respiro: a interface deve soar como a consulta, sem pressa e sem excessos.</p>
+      <p style="margin-top:var(--space-6)"><a class="link-arrow" href="index.html">Ver o site <span class="icon icon--sm" aria-hidden="true">arrow_outward</span></a></p>
+    </div>
+  </header>
+
+  <nav class="ds-nav" aria-label="Seções do design system">
+    <div class="container">
+      <ul>
+        <li><a href="#principios">Princípios</a></li>
+        <li><a href="#cores">Cores</a></li>
+        <li><a href="#tipografia">Tipografia</a></li>
+        <li><a href="#espaco">Espaço</a></li>
+        <li><a href="#raio">Raio e sombra</a></li>
+        <li><a href="#icones">Ícones</a></li>
+        <li><a href="#componentes">Componentes</a></li>
+        <li><a href="#motion">Motion</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="ds-section" id="principios">
+    <div class="container">
+      <h2 class="display-lg">Princípios</h2>
+      <p class="body">Três ideias guiam cada decisão de layout.</p>
+      <div class="two">
+        <article class="card"><span class="icon-frame"><span class="icon" aria-hidden="true">hearing</span></span><h3 class="card__title">Escuta antes de ruído</h3><p class="card__text">Hierarquia clara, poucos elementos por tela. O conteúdo fala primeiro; a decoração nunca disputa atenção.</p></article>
+        <article class="card"><span class="icon-frame"><span class="icon" aria-hidden="true">visibility</span></span><h3 class="card__title">Estética silenciosa</h3><p class="card__text">Contraste suave, linhas finas (1px), ícones em peso 200. Sofisticação pela contenção, assim como os resultados.</p></article>
+        <article class="card"><span class="icon-frame"><span class="icon" aria-hidden="true">shield</span></span><h3 class="card__title">Confiança acessível</h3><p class="card__text">Texto com contraste AA, foco visível, movimento que respeita <code class="tok">prefers-reduced-motion</code>.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="cores">
+    <div class="container">
+      <h2 class="display-lg">Cores</h2>
+      <p class="body">Paleta extraída do site original e refinada. O espresso é a cor-assinatura (botões, rodapé, superfícies de destaque); areia e linho estruturam o ritmo das seções; caramelo é o acento.</p>
+
+      <h3 class="ds-sub">Espresso · marca</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch__chip" style="background:#2a201c"></div><div class="swatch__meta"><b>Espresso 900</b><code>--espresso-900 · #2A201C</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#3a2d28"></div><div class="swatch__meta"><b>Espresso 800 ★</b><code>--espresso-800 · #3A2D28</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#4e3e37"></div><div class="swatch__meta"><b>Espresso 700</b><code>--espresso-700 · #4E3E37</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#6b5850"></div><div class="swatch__meta"><b>Espresso 600</b><code>--espresso-600 · #6B5850</code></div></div>
+      </div>
+
+      <h3 class="ds-sub">Caramelo · acento</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch__chip" style="background:#8a6a4a"></div><div class="swatch__meta"><b>Caramel 600</b><code>--caramel-600 · #8A6A4A</code><code>texto de destaque (AA)</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#a9865f"></div><div class="swatch__meta"><b>Caramel 500</b><code>--caramel-500 · #A9865F</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#cbad8d"></div><div class="swatch__meta"><b>Caramel 400</b><code>--caramel-400 · #CBAD8D</code><code>sobre fundo escuro</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#e6d6c3"></div><div class="swatch__meta"><b>Caramel 200</b><code>--caramel-200 · #E6D6C3</code></div></div>
+      </div>
+
+      <h3 class="ds-sub">Neutros quentes · fundos</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch__chip" style="background:#ddd3c9"></div><div class="swatch__meta"><b>Sand 300</b><code>--sand-300 · #DDD3C9</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#eae4de"></div><div class="swatch__meta"><b>Sand 200</b><code>--sand-200 · #EAE4DE</code><code>hero, tratamentos</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#f2ede8"></div><div class="swatch__meta"><b>Sand 100</b><code>--sand-100 · #F2EDE8</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#fbf8f5"></div><div class="swatch__meta"><b>Linen 50</b><code>--linen-50 · #FBF8F5</code><code>fundo base</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#ffffff"></div><div class="swatch__meta"><b>White</b><code>--white · #FFFFFF</code><code>cards</code></div></div>
+      </div>
+
+      <h3 class="ds-sub">Texto</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch__chip" style="background:#2c2c2c"></div><div class="swatch__meta"><b>Ink 900</b><code>--ink-900 · #2C2C2C</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#4a4643"></div><div class="swatch__meta"><b>Ink 700</b><code>--ink-700 · #4A4643</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#5e5a57"></div><div class="swatch__meta"><b>Ink 600</b><code>--ink-600 · #5E5A57</code><code>texto corrido</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#8f8a86"></div><div class="swatch__meta"><b>Ink 400</b><code>--ink-400 · #8F8A86</code><code>só legendas</code></div></div>
+        <div class="swatch"><div class="swatch__chip" style="background:#d3cfc4"></div><div class="swatch__meta"><b>Stone 300</b><code>--stone-300 · #D3CFC4</code><code>numerais decorativos</code></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="tipografia">
+    <div class="container">
+      <h2 class="display-lg">Tipografia</h2>
+      <p class="body"><strong>Italiana</strong> para títulos: serifada, alta e delicada, dialoga com o logotipo. <strong>Poppins</strong> Light/Regular para texto e interface. O Roboto do site anterior foi removido para unificar a voz.</p>
+      <div>
+        <div class="type-row"><div>Display XL<span class="tok">--text-display-xl · 44→84px</span></div><p class="display-xl">Cuidado que começa pela escuta.</p></div>
+        <div class="type-row"><div>Display LG<span class="tok">--text-display-lg · 36→60px</span></div><p class="display-lg">Um novo jeito de cuidar da pele</p></div>
+        <div class="type-row"><div>Display MD<span class="tok">--text-display-md · 28→40px</span></div><p class="display-md">Consulta Presencial</p></div>
+        <div class="type-row"><div>Title<span class="tok">--text-title · Poppins 500 · 18→20px</span></div><p class="title">Bioestimuladores de colágeno</p></div>
+        <div class="type-row"><div>Lead<span class="tok">--text-body-lg · Poppins 300 · 17→19px</span></div><p class="lead">Ciência, sensibilidade e estética consciente para quem quer cuidar da pele sem perder sua identidade.</p></div>
+        <div class="type-row"><div>Body<span class="tok">--text-body · Poppins 300 · 16px</span></div><p class="body">Cuidar não é padronizar. Cuidar é ouvir. É a partir desse vínculo que o tratamento deixa de ser apenas técnico.</p></div>
+        <div class="type-row"><div>Small<span class="tok">--text-small · 14px</span></div><p class="small">Suavização das linhas de expressão, respeitando os movimentos naturais.</p></div>
+        <div class="type-row"><div>Overline<span class="tok">--text-overline · 12px · 500 · 0.2em</span></div><p><span class="overline">Por que confiar</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="espaco">
+    <div class="container">
+      <h2 class="display-lg">Espaço e grid</h2>
+      <p class="body">Base de 4px. Container de 1200px com gutter fluido (16→40px). Seções respiram com <code class="tok">--section-y</code> (80→144px).</p>
+      <div class="spaces">
+        <div class="space-row"><code class="tok">--space-1</code><span class="tok">4px</span><span style="width:4px"></span></div>
+        <div class="space-row"><code class="tok">--space-2</code><span class="tok">8px</span><span style="width:8px"></span></div>
+        <div class="space-row"><code class="tok">--space-3</code><span class="tok">12px</span><span style="width:12px"></span></div>
+        <div class="space-row"><code class="tok">--space-4</code><span class="tok">16px</span><span style="width:16px"></span></div>
+        <div class="space-row"><code class="tok">--space-5</code><span class="tok">24px</span><span style="width:24px"></span></div>
+        <div class="space-row"><code class="tok">--space-6</code><span class="tok">32px</span><span style="width:32px"></span></div>
+        <div class="space-row"><code class="tok">--space-7</code><span class="tok">48px</span><span style="width:48px"></span></div>
+        <div class="space-row"><code class="tok">--space-8</code><span class="tok">64px</span><span style="width:64px"></span></div>
+        <div class="space-row"><code class="tok">--space-9</code><span class="tok">96px</span><span style="width:96px"></span></div>
+        <div class="space-row"><code class="tok">--space-10</code><span class="tok">128px</span><span style="width:128px"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="raio">
+    <div class="container">
+      <h2 class="display-lg">Raio e sombra</h2>
+      <p class="body">Botões em pílula, cards com 16px, blocos com 24px. A forma de <strong>arco</strong> é exclusiva para fotografia editorial. Sombras sempre em tom espresso, nunca preto puro.</p>
+      <h3 class="ds-sub">Raio</h3>
+      <div class="radii">
+        <div style="border-radius:var(--radius-sm)"><code class="tok">--radius-sm 8</code></div>
+        <div style="border-radius:var(--radius-md)"><code class="tok">--radius-md 16</code></div>
+        <div style="border-radius:var(--radius-lg)"><code class="tok">--radius-lg 24</code></div>
+        <div style="border-radius:var(--radius-xl)"><code class="tok">--radius-xl 32</code></div>
+        <div style="border-radius:var(--radius-arch);height:160px"><code class="tok">--radius-arch</code></div>
+        <div style="border-radius:var(--radius-pill);height:56px"><code class="tok">--radius-pill</code></div>
+      </div>
+      <h3 class="ds-sub">Sombra</h3>
+      <div class="shadows">
+        <div style="box-shadow:var(--shadow-xs)"><code class="tok">--shadow-xs</code></div>
+        <div style="box-shadow:var(--shadow-sm)"><code class="tok">--shadow-sm</code></div>
+        <div style="box-shadow:var(--shadow-md)"><code class="tok">--shadow-md</code></div>
+        <div style="box-shadow:var(--shadow-lg)"><code class="tok">--shadow-lg</code></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="icones">
+    <div class="container">
+      <h2 class="display-lg">Ícones</h2>
+      <p class="body"><strong>Material Symbols Sharp</strong>, peso <strong>200</strong>, sem preenchimento, grade 0. Use a classe <code class="tok">.icon</code> com o nome da ligadura. A fonte é carregada só com os ícones usados (<code class="tok">icon_names=</code>, em ordem alfabética): ao adicionar um ícone novo, inclua o nome na URL.</p>
+      <div class="icons">
+        <div><span class="icon" aria-hidden="true">hearing</span><code class="tok">hearing</code></div>
+        <div><span class="icon" aria-hidden="true">shield</span><code class="tok">shield</code></div>
+        <div><span class="icon" aria-hidden="true">visibility</span><code class="tok">visibility</code></div>
+        <div><span class="icon" aria-hidden="true">auto_awesome</span><code class="tok">auto_awesome</code></div>
+        <div><span class="icon" aria-hidden="true">eco</span><code class="tok">eco</code></div>
+        <div><span class="icon" aria-hidden="true">location_on</span><code class="tok">location_on</code></div>
+        <div><span class="icon" aria-hidden="true">videocam</span><code class="tok">videocam</code></div>
+        <div><span class="icon" aria-hidden="true">map</span><code class="tok">map</code></div>
+        <div><span class="icon" aria-hidden="true">call</span><code class="tok">call</code></div>
+        <div><span class="icon" aria-hidden="true">chat</span><code class="tok">chat</code></div>
+        <div><span class="icon" aria-hidden="true">check</span><code class="tok">check</code></div>
+        <div><span class="icon" aria-hidden="true">verified</span><code class="tok">verified</code></div>
+        <div><span class="icon" aria-hidden="true">arrow_outward</span><code class="tok">arrow_outward</code></div>
+        <div><span class="icon" aria-hidden="true">menu</span><code class="tok">menu</code></div>
+        <div><span class="icon" aria-hidden="true">close</span><code class="tok">close</code></div>
+        <div><span class="icon" aria-hidden="true">cookie</span><code class="tok">cookie</code></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="componentes">
+    <div class="container">
+      <h2 class="display-lg">Componentes</h2>
+      <p class="body">Blocos reutilizáveis definidos em <code class="tok">assets/css/styles.css</code>.</p>
+
+      <h3 class="ds-sub">Botões</h3>
+      <div class="two">
+        <div class="panel grid-demo">
+          <a class="btn" href="#componentes">Agendar minha consulta <span class="icon" aria-hidden="true">arrow_outward</span></a>
+          <a class="btn btn--outline" href="#componentes">Agendar minha consulta <span class="icon" aria-hidden="true">arrow_outward</span></a>
+          <a class="btn btn--sm" href="#componentes">Agendar <span class="icon" aria-hidden="true">arrow_outward</span></a>
+          <a class="link-arrow" href="#componentes">Como chegar <span class="icon icon--sm" aria-hidden="true">arrow_outward</span></a>
+        </div>
+        <div class="panel panel--dark grid-demo">
+          <a class="btn btn--light" href="#componentes">Falar no WhatsApp <span class="icon" aria-hidden="true">arrow_outward</span></a>
+          <p class="small" style="color:var(--color-text-inverse-muted)"><code class="tok" style="color:inherit">.btn</code> · <code class="tok" style="color:inherit">.btn--outline</code> · <code class="tok" style="color:inherit">.btn--light</code> · <code class="tok" style="color:inherit">.btn--sm</code> · <code class="tok" style="color:inherit">.btn--block</code></p>
+        </div>
+      </div>
+
+      <h3 class="ds-sub">Overline, badge e lista</h3>
+      <div class="panel" style="display:grid;gap:var(--space-5)">
+        <span class="overline">Por que confiar</span>
+        <span class="badge" style="justify-self:start">CRM-RJ 521327526</span>
+        <ul class="check-list">
+          <li><span class="icon" aria-hidden="true">check</span>Graduação em Medicina</li>
+          <li><span class="icon" aria-hidden="true">check</span>Formação em Psicologia</li>
+        </ul>
+      </div>
+
+      <h3 class="ds-sub">Cards</h3>
+      <div class="two">
+        <article class="card">
+          <span class="icon-frame"><span class="icon" aria-hidden="true">hearing</span></span>
+          <h3 class="card__title">Escuta ativa</h3>
+          <p class="card__text">Você é ouvido(a) antes de qualquer decisão.</p>
+        </article>
+        <article class="card card--inverse">
+          <span class="icon-frame"><span class="icon" aria-hidden="true">videocam</span></span>
+          <h3 class="card__title">Consulta Online</h3>
+          <p class="card__text">Voltada para quem busca um skincare verdadeiramente individualizado.</p>
+        </article>
+      </div>
+
+      <h3 class="ds-sub">Item de tratamento</h3>
+      <div class="panel" style="padding-block:0">
+        <div class="treatment" style="border-bottom:0">
+          <span class="treatment__num" aria-hidden="true">01</span>
+          <div class="treatment__body">
+            <h3 class="treatment__title">Toxina botulínica</h3>
+            <p class="treatment__text">Suavização das linhas de expressão, respeitando os movimentos naturais e a individualidade de cada rosto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="motion">
+    <div class="container">
+      <h2 class="display-lg">Motion</h2>
+      <p class="body">Movimento lento e suave, como uma respiração. Nada pisca ou quica.</p>
+      <ul class="rules">
+        <li><span class="icon" aria-hidden="true">check</span><span><code class="tok">--ease-out</code> cubic-bezier(.22, 1, .36, 1) para entradas e hovers.</span></li>
+        <li><span class="icon" aria-hidden="true">check</span><span><code class="tok">--dur-fast</code> 180ms (cor) · <code class="tok">--dur-base</code> 320ms (hover) · <code class="tok">--dur-slow</code> 800ms (revelar ao rolar).</span></li>
+        <li><span class="icon" aria-hidden="true">check</span><span><code class="tok">.reveal</code>: sobe 24px e aparece ao entrar na tela; atraso escalonado com <code class="tok">--reveal-delay</code>.</span></li>
+        <li><span class="icon" aria-hidden="true">check</span><span>Com <code class="tok">prefers-reduced-motion</code>, todas as durações viram 0.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="footer" style="padding-block:var(--space-7)">
+    <div class="container footer__bottom" style="padding-top:0">
+      <p>Design System · Dr. Marcos Paulo Silveira</p>
+      <p><a href="index.html">Voltar ao site</a></p>
+    </div>
+  </footer>
+</body>
+</html>
