@@ -153,56 +153,101 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .section-head--center { text-align: center; justify-items: center; }
 .section-head--center .lead { max-width: 62ch; }
 
-/* Botão */
+/* Botão
+   Pílula com seta em "chip" circular de contraste. Variantes:
+   (padrão) espresso + chip caramelo · --accent caramelo + chip espresso (fundos escuros)
+   --light linho + chip espresso · --outline contorno · --sm · --block */
 .btn {
-  --btn-bg: var(--color-brand);
-  --btn-fg: var(--color-text-inverse);
-  --btn-bd: var(--color-brand);
+  --btn-bg: var(--espresso-800);
+  --btn-fg: var(--linen-50);
+  --btn-bd: var(--espresso-800);
+  --btn-hover: var(--espresso-950);
+  --btn-chip-bg: var(--caramel-400);
+  --btn-chip-fg: var(--espresso-900);
+  --btn-shadow: 0 14px 28px -14px rgba(42, 32, 28, 0.65);
+  --btn-chip: 40px;
   position: relative;
-  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-3);
-  min-height: 52px;
-  padding: 0 var(--space-6);
-  font-size: var(--text-small);
-  font-weight: var(--weight-regular);
-  letter-spacing: var(--tracking-button);
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-4);
+  min-height: 56px;
+  padding: 0 var(--space-2) 0 var(--space-6);
+  font-size: 0.9375rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.01em;
   color: var(--btn-fg);
   background: var(--btn-bg);
   border: 1px solid var(--btn-bd);
   border-radius: var(--radius-pill);
+  box-shadow: var(--btn-shadow);
   overflow: hidden;
   isolation: isolate;
-  transition: color var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  transition: color var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
   white-space: nowrap;
 }
+.btn:not(:has(.icon)) { padding: 0 var(--space-6); }
 .btn::before {
   content: "";
   position: absolute; inset: 0;
   z-index: -1;
-  background: var(--espresso-950);
+  background: var(--btn-hover);
   transform: translateY(101%);
   transition: transform var(--dur-base) var(--ease-out);
 }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 20px 36px -16px rgba(42, 32, 28, 0.7); }
 .btn:hover::before { transform: translateY(0); }
-.btn:active { transform: scale(0.98); }
-.btn .icon { font-size: 20px; transition: transform var(--dur-base) var(--ease-out); }
-.btn:hover .icon { transform: translate(2px, -2px); }
-
-.btn--outline {
-  --btn-bg: transparent;
-  --btn-fg: var(--espresso-800);
-  --btn-bd: var(--color-line-strong);
+.btn:active { transform: translateY(0) scale(0.98); }
+.btn .icon {
+  display: grid; place-items: center;
+  width: var(--btn-chip); height: var(--btn-chip);
+  font-size: 20px;
+  color: var(--btn-chip-fg);
+  background: var(--btn-chip-bg);
+  border-radius: 50%;
+  transition: transform var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
 }
-.btn--outline::before { background: var(--espresso-800); }
-.btn--outline:hover { --btn-fg: var(--color-text-inverse); --btn-bd: var(--espresso-800); }
+.btn:hover .icon { transform: rotate(45deg); }
+
+.btn--accent {
+  --btn-bg: var(--caramel-400);
+  --btn-fg: var(--espresso-900);
+  --btn-bd: var(--caramel-400);
+  --btn-hover: var(--caramel-200);
+  --btn-chip-bg: var(--espresso-900);
+  --btn-chip-fg: var(--caramel-400);
+  --btn-shadow: 0 16px 36px -14px rgba(203, 173, 141, 0.55);
+}
+.btn--accent:hover { box-shadow: 0 22px 44px -16px rgba(203, 173, 141, 0.7); }
 
 .btn--light {
   --btn-bg: var(--linen-50);
   --btn-fg: var(--espresso-800);
   --btn-bd: var(--linen-50);
+  --btn-hover: var(--caramel-200);
+  --btn-chip-bg: var(--espresso-800);
+  --btn-chip-fg: var(--linen-50);
+  --btn-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.5);
 }
-.btn--light::before { background: var(--caramel-200); }
 
-.btn--sm { min-height: 42px; padding: 0 var(--space-5); font-size: var(--text-caption); }
+.btn--outline {
+  --btn-bg: transparent;
+  --btn-fg: var(--espresso-800);
+  --btn-bd: var(--espresso-800);
+  --btn-hover: var(--espresso-800);
+  --btn-chip-bg: var(--espresso-800);
+  --btn-chip-fg: var(--linen-50);
+  --btn-shadow: none;
+}
+.btn--outline:hover { --btn-fg: var(--linen-50); --btn-chip-bg: var(--caramel-400); --btn-chip-fg: var(--espresso-900); }
+
+.btn--sm {
+  --btn-chip: 30px;
+  min-height: 44px;
+  padding: 0 var(--space-1) 0 var(--space-5);
+  gap: var(--space-3);
+  font-size: var(--text-caption);
+  --btn-shadow: 0 10px 20px -12px rgba(42, 32, 28, 0.55);
+}
+.btn--sm:not(:has(.icon)) { padding: 0 var(--space-5); }
+.btn--sm .icon { font-size: 17px; }
 .btn--block { width: 100%; }
 
 /* Link com seta */
@@ -465,9 +510,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .header:not(.is-scrolled) .nav__link { color: rgba(251, 248, 245, 0.78); }
 .header:not(.is-scrolled) .nav__link:hover,
 .header:not(.is-scrolled) .nav__link.is-active { color: var(--linen-50); }
-.header:not(.is-scrolled) .nav .btn { --btn-bg: transparent; --btn-fg: var(--linen-50); --btn-bd: rgba(251, 248, 245, 0.4); }
-.header:not(.is-scrolled) .nav .btn::before { background: var(--linen-50); }
-.header:not(.is-scrolled) .nav .btn:hover { --btn-fg: var(--espresso-800); --btn-bd: var(--linen-50); }
+.header:not(.is-scrolled) .nav .btn {
+  --btn-bg: var(--caramel-400); --btn-fg: var(--espresso-900); --btn-bd: var(--caramel-400);
+  --btn-hover: var(--caramel-200); --btn-chip-bg: var(--espresso-900); --btn-chip-fg: var(--caramel-400);
+  --btn-shadow: 0 10px 24px -12px rgba(203, 173, 141, 0.5);
+}
 .header:not(.is-scrolled) .menu-toggle { color: var(--linen-50); }
 .header__logo img { transition: filter var(--dur-base) var(--ease-out); }
 

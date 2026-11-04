@@ -73,7 +73,7 @@ Ao usar um ícone novo, adicione o nome na URL do `<head>` de `index.html` e de 
 
 | Classe | Descrição |
 |---|---|
-| `.btn`, `.btn--outline`, `.btn--light`, `.btn--sm`, `.btn--block` | Botão pílula com preenchimento animado no hover |
+| `.btn`, `.btn--accent`, `.btn--light`, `.btn--outline`, `.btn--sm`, `.btn--block` | Botão pílula de 56px, peso 500, com a seta num chip circular de contraste e leve elevação no hover. Use `--accent` (caramelo) sobre fundos escuros e o padrão (espresso) sobre fundos claros |
 | `.link-arrow` | Link sublinhado com seta |
 | `.overline` | Rótulo de seção com fio à esquerda |
 | `.badge` | Selo (ex.: CRM) |
