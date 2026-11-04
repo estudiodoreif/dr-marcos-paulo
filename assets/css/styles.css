@@ -154,17 +154,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .section-head--center .lead { max-width: 62ch; }
 
 /* Botão
-   Pílula com seta em "chip" circular de contraste. Variantes:
-   (padrão) espresso + chip caramelo · --accent caramelo + chip espresso (fundos escuros)
-   --light linho + chip espresso · --outline contorno · --sm · --block */
+   Pílula com seta em "chip" circular de contraste.
+   (padrão) verde WhatsApp: todos os CTAs de agendamento
+   --brand espresso: ações que não são WhatsApp (ex.: cookies)
+   --light · --outline · --sm · --block */
 .btn {
-  --btn-bg: var(--espresso-800);
-  --btn-fg: var(--linen-50);
-  --btn-bd: var(--espresso-800);
-  --btn-hover: var(--espresso-950);
-  --btn-chip-bg: var(--caramel-400);
-  --btn-chip-fg: var(--espresso-900);
-  --btn-shadow: 0 14px 28px -14px rgba(42, 32, 28, 0.65);
+  --btn-bg: var(--whatsapp-500);
+  --btn-fg: var(--whatsapp-ink);
+  --btn-bd: var(--whatsapp-500);
+  --btn-hover: var(--whatsapp-400);
+  --btn-chip-bg: var(--whatsapp-900);
+  --btn-chip-fg: var(--white);
+  --btn-shadow: 0 14px 30px -14px rgba(37, 211, 102, 0.6);
+  --btn-shadow-hover: 0 22px 44px -16px rgba(37, 211, 102, 0.75);
   --btn-chip: 40px;
   position: relative;
   display: inline-flex; align-items: center; justify-content: center; gap: var(--space-4);
@@ -192,7 +194,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transform: translateY(101%);
   transition: transform var(--dur-base) var(--ease-out);
 }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 20px 36px -16px rgba(42, 32, 28, 0.7); }
+.btn:hover { transform: translateY(-2px); box-shadow: var(--btn-shadow-hover); }
 .btn:hover::before { transform: translateY(0); }
 .btn:active { transform: translateY(0) scale(0.98); }
 .btn .icon {
@@ -206,16 +208,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .btn:hover .icon { transform: rotate(45deg); }
 
-.btn--accent {
-  --btn-bg: var(--caramel-400);
-  --btn-fg: var(--espresso-900);
-  --btn-bd: var(--caramel-400);
-  --btn-hover: var(--caramel-200);
-  --btn-chip-bg: var(--espresso-900);
-  --btn-chip-fg: var(--caramel-400);
-  --btn-shadow: 0 16px 36px -14px rgba(203, 173, 141, 0.55);
+.btn--brand {
+  --btn-bg: var(--espresso-800);
+  --btn-fg: var(--linen-50);
+  --btn-bd: var(--espresso-800);
+  --btn-hover: var(--espresso-950);
+  --btn-chip-bg: var(--caramel-400);
+  --btn-chip-fg: var(--espresso-900);
+  --btn-shadow: 0 14px 28px -14px rgba(42, 32, 28, 0.65);
+  --btn-shadow-hover: 0 20px 36px -16px rgba(42, 32, 28, 0.7);
 }
-.btn--accent:hover { box-shadow: 0 22px 44px -16px rgba(203, 173, 141, 0.7); }
 
 .btn--light {
   --btn-bg: var(--linen-50);
@@ -225,6 +227,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   --btn-chip-bg: var(--espresso-800);
   --btn-chip-fg: var(--linen-50);
   --btn-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.5);
+  --btn-shadow-hover: 0 20px 36px -16px rgba(0, 0, 0, 0.55);
 }
 
 .btn--outline {
@@ -235,6 +238,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   --btn-chip-bg: var(--espresso-800);
   --btn-chip-fg: var(--linen-50);
   --btn-shadow: none;
+  --btn-shadow-hover: none;
 }
 .btn--outline:hover { --btn-fg: var(--linen-50); --btn-chip-bg: var(--caramel-400); --btn-chip-fg: var(--espresso-900); }
 
@@ -244,7 +248,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   padding: 0 var(--space-1) 0 var(--space-5);
   gap: var(--space-3);
   font-size: var(--text-caption);
-  --btn-shadow: 0 10px 20px -12px rgba(42, 32, 28, 0.55);
 }
 .btn--sm:not(:has(.icon)) { padding: 0 var(--space-5); }
 .btn--sm .icon { font-size: 17px; }
@@ -510,11 +513,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .header:not(.is-scrolled) .nav__link { color: rgba(251, 248, 245, 0.78); }
 .header:not(.is-scrolled) .nav__link:hover,
 .header:not(.is-scrolled) .nav__link.is-active { color: var(--linen-50); }
-.header:not(.is-scrolled) .nav .btn {
-  --btn-bg: var(--caramel-400); --btn-fg: var(--espresso-900); --btn-bd: var(--caramel-400);
-  --btn-hover: var(--caramel-200); --btn-chip-bg: var(--espresso-900); --btn-chip-fg: var(--caramel-400);
-  --btn-shadow: 0 10px 24px -12px rgba(203, 173, 141, 0.5);
-}
 .header:not(.is-scrolled) .menu-toggle { color: var(--linen-50); }
 .header__logo img { transition: filter var(--dur-base) var(--ease-out); }
 
@@ -794,16 +792,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   height: 56px;
   padding: 0 var(--space-5) 0 var(--space-4);
   font-size: var(--text-small);
-  color: var(--linen-50);
-  background: var(--espresso-800);
+  font-weight: var(--weight-medium);
+  color: var(--whatsapp-ink);
+  background: var(--whatsapp-500);
   border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 18px 40px -14px rgba(37, 211, 102, 0.6), var(--shadow-md);
   opacity: 0; transform: translateY(16px); pointer-events: none;
   transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out), background var(--dur-fast) var(--ease-out);
 }
 .fab.is-visible { opacity: 1; transform: none; pointer-events: auto; }
-.fab:hover { background: var(--espresso-950); }
-.fab .icon { color: var(--caramel-400); }
+.fab:hover { background: var(--whatsapp-400); }
+.fab .icon { color: var(--whatsapp-900); }
 @media (max-width: 560px) {
   .fab { right: var(--space-4); bottom: var(--space-4); left: var(--space-4); justify-content: center; }
 }

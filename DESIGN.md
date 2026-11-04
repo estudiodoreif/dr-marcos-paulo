@@ -21,6 +21,10 @@ Referência dos fundamentos visuais do site. A fonte de verdade dos valores é
 | `--caramel-500` | `#A9865F` | Numerais, foco |
 | `--caramel-400` | `#CBAD8D` | Acento sobre fundo escuro, decoração |
 | `--caramel-200` | `#E6D6C3` | Seleção de texto, hover do botão claro |
+| `--whatsapp-500` ★ | `#25D366` | Fundo dos CTAs (todos levam ao WhatsApp) e do botão flutuante |
+| `--whatsapp-400` | `#4ADE80` | Hover dos CTAs |
+| `--whatsapp-900` | `#075E54` | Chip da seta |
+| `--whatsapp-ink` | `#052E16` | Texto sobre o verde. Branco não passa (1.98:1); este dá 7.5:1 |
 | `--sand-200` | `#EAE4DE` | Fundo do hero e de Tratamentos |
 | `--sand-100` | `#F2EDE8` | Fundo de Locais |
 | `--linen-50` | `#FBF8F5` | Fundo base |
@@ -73,7 +77,7 @@ Ao usar um ícone novo, adicione o nome na URL do `<head>` de `index.html` e de 
 
 | Classe | Descrição |
 |---|---|
-| `.btn`, `.btn--accent`, `.btn--light`, `.btn--outline`, `.btn--sm`, `.btn--block` | Botão pílula de 56px, peso 500, com a seta num chip circular de contraste e leve elevação no hover. Use `--accent` (caramelo) sobre fundos escuros e o padrão (espresso) sobre fundos claros |
+| `.btn`, `.btn--brand`, `.btn--light`, `.btn--outline`, `.btn--sm`, `.btn--block` | Botão pílula de 56px, peso 500, com a seta num chip circular e leve elevação no hover. O padrão é **verde WhatsApp**, usado em todos os CTAs de agendamento. `--brand` (espresso) fica para ações que não são WhatsApp, como o aviso de cookies |
 | `.link-arrow` | Link sublinhado com seta |
 | `.overline` | Rótulo de seção com fio à esquerda |
 | `.badge` | Selo (ex.: CRM) |
