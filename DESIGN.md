@@ -88,3 +88,10 @@ Ao usar um ícone novo, adicione o nome na URL do `<head>` de `index.html` e de 
 - `--ease-out: cubic-bezier(.22, 1, .36, 1)`
 - `--dur-fast 180ms` · `--dur-base 320ms` · `--dur-slow 800ms`
 - Com `prefers-reduced-motion: reduce`, todas as durações viram 0.
+
+## Hero
+
+- Fundo `--espresso-900` com brilho quente radial; texto em `--linen-50`, destaque em `--caramel-400`.
+- Foto sempre no **tamanho nativo (864×779)**, nunca ampliada, presa ao canto inferior direito e fundida ao fundo por gradientes.
+- Faixa de credenciais no rodapé do hero (CRM, local, modalidades).
+- Enquanto a página não rola, o header fica claro sobre o escuro (logo invertido, botão em contorno). Ao rolar, volta ao padrão linho.

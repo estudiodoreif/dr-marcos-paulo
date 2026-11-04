@@ -76,13 +76,15 @@
 
   /* Aviso de cookies */
   const cookie = $('.cookie');
-  if (cookie && store.get('mps-cookie-ok') !== '1') {
+  const COOKIE_KEY = 'mps-cookie-ok';
+  if (cookie && store.get(COOKIE_KEY) !== '1') {
     cookie.hidden = false;
-    setTimeout(() => cookie.classList.add('is-visible'), 1200);
+    const showTimer = setTimeout(() => cookie.classList.add('is-visible'), 1200);
     $('[data-cookie-ok]', cookie).addEventListener('click', () => {
-      store.set('mps-cookie-ok', '1');
+      clearTimeout(showTimer);
+      store.set(COOKIE_KEY, '1');
       cookie.classList.remove('is-visible');
-      setTimeout(() => { cookie.hidden = true; }, 800);
+      setTimeout(() => { cookie.hidden = true; }, 400);
     });
   }
 

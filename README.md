@@ -19,13 +19,14 @@ assets/
 
 ## Rodar localmente
 
-Qualquer servidor estático serve. Por exemplo:
+Dev server com live reload (recarrega ao salvar HTML, CSS, JS ou imagens):
 
 ```bash
-python3 -m http.server 4321
+npm install
+npm run dev
 ```
 
-Depois abra http://localhost:4321.
+Depois abra http://localhost:4321. Sem Node, qualquer servidor estático serve (ex.: `python3 -m http.server 4321`).
 
 ## Stack
 

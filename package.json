@@ -1,0 +1,12 @@
+{
+  "name": "dr-marcos-paulo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site do Dr. Marcos Paulo Silveira",
+  "scripts": {
+    "dev": "browser-sync start --server --port 4321 --files \"*.html\" \"assets/**/*\" --no-open --no-notify --no-ui"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.3"
+  }
+}
